@@ -1,0 +1,12 @@
+# Editor
+.vscode
+
+# Git
+.github
+.gitignore
+
+# Project
+src
+tsconfig.json
+gulpfile.js
+tests
