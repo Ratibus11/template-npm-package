@@ -141,7 +141,7 @@ This package is published under the [Unlicensed](https://choosealicense.com/lice
 Using multiple modules:
 
 -   dependencies:
-    -   _nothing, all made with love_
+    -   _nothing, it's up to you to find what you need!_
 -   Development dependencies:
     -   [`Chai.js`](https://www.npmjs.com/package/chai) - Assertions (tests)
     -   [`Glob`](https://www.npmjs.com/package/glob) - Multiple files selection (build)
