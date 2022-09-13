@@ -1,6 +1,6 @@
 # TEMPLATE - NPM package
 
-A basic template for NPM packages with TypeScript, Gulp and Mocha/Chai.js
+A basic template for NPM packages with TypeScript, Gulp and Mocha/Chai.js.
 
 ## Table of content
 
