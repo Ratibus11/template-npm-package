@@ -37,11 +37,11 @@ git init
 
 Don't forget to check some points before coding and publishing!
 
--   Has your package the correct manifest (`package.json` (see [NPM documentation](https://docs.npmjs.com/cli/v8/configuring-npm/package-json) for more informations))?
+-   Has your package the correct manifest? (`package.json` (see [NPM documentation](https://docs.npmjs.com/cli/v8/configuring-npm/package-json) for more informations))
     -   Name (name and display name)
+    -   Description
     -   Version
     -   Author (name and/or url and/or email address)
-    -   Description
     -   Keywords
 -   Is your license the one you want? (Check [choosealicence](https://choosealicense.com/) for more informations)
 -   Is your package's version the good one? See [Semver](https://semver.org/) for more informations.
