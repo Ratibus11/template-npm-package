@@ -95,20 +95,13 @@ function hi(): string {
 	return "Hello world!";
 }
 
-/**
- * Private variable
- * This variable is NOT exported and cannot called outside the module.
- * However, it is possible to load it, for example, during tests, with rewire (see `tests/hi.ts`)
- */
-const iAmTrue = true;
-
 export { hi };
 ```
 
 <!-- prettier-ignore-start -->
 ```js
 // app/main.js - Compiled to JS and minified version of your code.
-function hi(){return"Hello world!"}Object.defineProperty(exports,"__esModule",{value:!0}),exports.hi=void 0,exports.hi=hi;const iAmTrue=!0;
+function hi(){return"Hello world!"}Object.defineProperty(exports,"__esModule",{value:!0}),exports.hi=void 0,exports.hi=hi;
 ```
 <!-- prettier-ignore-end -->
 
@@ -143,14 +136,15 @@ Using multiple modules:
 -   dependencies:
     -   _nothing, it's up to you to find what you need!_
 -   Development dependencies:
-    -   [`Chai.js`](https://www.npmjs.com/package/chai) - Assertions (tests)
-    -   [`Glob`](https://www.npmjs.com/package/glob) - Multiple files selection (build)
+    -   [`chai`](https://www.npmjs.com/package/chai) - Assertions (tests)
+    -   [`glob`](https://www.npmjs.com/package/glob) - Multiple files selection (build)
     -   [`gulp`](https://www.npmjs.com/package/gulp) - Tasks runner (build)
     -   [`gulp-minify`](https://www.npmjs.com/package/gulp-minify) - Gulp plugin for files minifying (build)
     -   [`gulp-rename`](https://www.npmjs.com/package/gulp-rename) - Gulp plugin for files renaming (build)
+    -   [`gulp-ts-alias`](https://www.npmjs.com/package/gulp-ts-alias) - Rewrite aliases to native paths in declaration files (build)
     -   [`gulp-typescript`](https://www.npmjs.com/package/gulp-typescript) - Gulp plugin for Typescript compilation (build)
     -   [`merge2`](https://www.npmjs.com/package/merge2) - Combine streams (build)
     -   [`rewire`](https://www.npmjs.com/package/rewire) - Access module's private elements (tests)
-    -   [`TS-Mocha`](https://www.npmjs.com/package/ts-mocha) - Typescript version of Mocha (tests)
+    -   [`ts-mocha`](https://www.npmjs.com/package/ts-mocha) - Typescript version of Mocha (tests)
 
 <div align="right">Made with &#10084; by <a href="https://github.com/Ratibus11">Ratibus11</a>.</div>
