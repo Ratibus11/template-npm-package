@@ -43,6 +43,7 @@ Don't forget to check some points before coding and publishing!
     -   Version
     -   Author (name and/or url and/or email address)
     -   Keywords
+    -   Homepage and bugs links
 -   Is your license the one you want? (Check [choosealicence](https://choosealicense.com/) for more informations)
 -   Is your package's version the good one? See [Semver](https://semver.org/) for more informations.
 -   Did you removed `"private": true` from `package.json`? By security, you cannot publish this template on NPM. Just remove this line to do it!
@@ -141,7 +142,6 @@ Using multiple modules:
     -   [`gulp`](https://www.npmjs.com/package/gulp) - Tasks runner (build)
     -   [`gulp-minify`](https://www.npmjs.com/package/gulp-minify) - Gulp plugin for files minifying (build)
     -   [`gulp-rename`](https://www.npmjs.com/package/gulp-rename) - Gulp plugin for files renaming (build)
-    -   [`gulp-ts-alias`](https://www.npmjs.com/package/gulp-ts-alias) - Rewrite aliases to native paths in declaration files (build)
     -   [`gulp-typescript`](https://www.npmjs.com/package/gulp-typescript) - Gulp plugin for Typescript compilation (build)
     -   [`merge2`](https://www.npmjs.com/package/merge2) - Combine streams (build)
     -   [`rewire`](https://www.npmjs.com/package/rewire) - Access module's private elements (tests)
