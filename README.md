@@ -75,7 +75,7 @@ Don't forget to check some points before coding and publishing!
 
 ## How can I use it?
 
-> **_NOTE:_** On `npm publish`, `test`, then `build` scripts will be called before publishing.
+> **_NOTE:_** On `npm publish`, intallation will be performed, then `test`, then `build` scripts will be called before publishing.
 
 -   NPM scripts (`npm run ...`):
     -   `test` - Will load all `.ts` files in `/tests` (and subfolders) and launch all tests. You don't need to compile your project to perform tests.
