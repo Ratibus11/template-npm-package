@@ -1,25 +1,33 @@
 {
-	"compilerOptions": {
-		"target": "ES6",
-		"module": "CommonJS",
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "CommonJS",
 
-		"baseUrl": ".",
-		"outDir": "app",
+        "baseUrl": ".",
+        "outDir": "app",
 
-		"declaration": true,
-		"declarationMap": false,
-		"declarationDir": "types",
-		"removeComments": false,
+        "declaration": true,
+        "declarationMap": false,
 
-		"noImplicitAny": true,
-		"noImplicitOverride": true,
-		"noImplicitReturns": true,
-		"noImplicitThis": true,
-		"noImplicitUseStrict": true,
+        "noImplicitAny": true,
+        "noImplicitOverride": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noImplicitUseStrict": true,
 
-		"paths": {
-			"@src/*": ["src/*"]
-		}
-	},
-	"include": ["src/**/*.ts", "tests/**/*.ts"]
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "strictPropertyInitialization": true,
+
+        "paths": {
+            "@main": ["src/main"],
+            "@aliasDemonstration": ["src/alias"]
+        },
+
+        "plugins": [
+            { "transform": "typescript-transform-paths" },
+            { "transform": "typescript-transform-paths", "afterDeclarations": true }
+        ]
+    },
+    "include": ["src/**/*.ts", "tests/**/*.ts"]
 }

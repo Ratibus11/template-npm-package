@@ -1,43 +1,46 @@
 {
-	"private": true,
-	"name": "template-npm-package",
-	"displayName": "TEMPLATE - NPM package",
-	"description": "Basic template for NPM packages with TypeScript, Gulp and Mocha/Chai.js.",
-	"version": "1.0.0",
-	"keywords": [
-		"template",
-		"typescript",
-		"gulp",
-		"mocha",
-		"chaijs"
-	],
-	"license": "SEE IN LICENSE",
-	"author": {
-		"email": "bastian.lucas@icloud.com",
-		"name": "Lucas Bastian",
-		"url": "https://ratibus11.github.io"
-	},
-	"homepage": "https://github.com/Ratibus11/template-npm-package",
-	"bugs": "https://github.com/Ratibus11/template-npm-package/issues",
-	"main": "app/main.js",
-	"types": "types/main.d.ts",
-	"scripts": {
-		"build": "gulp build",
-		"test": "ts-mocha -r tsconfig-paths/register -p tsconfig.json tests/**/*.ts",
-		"prepublishOnly": "npm run test && npm run build"
-	},
-	"devDependencies": {
-		"@types/chai": "^4.3.3",
-		"@types/mocha": "^9.1.1",
-		"@types/node": "^18.7.16",
-		"chai": "^4.3.6",
-		"glob": "^8.0.3",
-		"gulp": "^4.0.2",
-		"gulp-minify": "^3.1.0",
-		"gulp-rename": "^2.0.0",
-		"gulp-typescript": "^6.0.0-alpha.1",
-		"merge2": "^1.4.1",
-		"rewire": "^6.0.0",
-		"ts-mocha": "^10.0.0"
-	}
+    "private": true,
+    "name": "template-npm-package",
+    "displayName": "TEMPLATE - NPM package",
+    "description": "Basic template for NPM packages with TypeScript, Gulp and Mocha/Chai.js.",
+    "version": "1.0.0",
+    "keywords": [
+        "template",
+        "typescript",
+        "gulp",
+        "mocha",
+        "chaijs"
+    ],
+    "license": "SEE IN LICENSE",
+    "author": {
+        "email": "bastian.lucas@icloud.com",
+        "name": "Lucas Bastian",
+        "url": "https://ratibus11.github.io"
+    },
+    "homepage": "https://github.com/Ratibus11/template-npm-package",
+    "bugs": "https://github.com/Ratibus11/template-npm-package/issues",
+    "main": "app/main.js",
+    "types": "types/main.d.ts",
+    "scripts": {
+        "prepare": "ts-patch install -s",
+        "build": "gulp build",
+        "test": "ts-mocha -r tsconfig-paths/register -p tsconfig.test.json tests/API/**/*.ts",
+        "prepublishOnly": "npm i && npm run build && npm run test"
+    },
+    "devDependencies": {
+        "@types/chai": "^4.3.3",
+        "@types/mocha": "^9.1.1",
+        "@types/node": "^18.7.16",
+        "chai": "^4.3.6",
+        "glob": "^8.0.3",
+        "gulp": "^4.0.2",
+        "gulp-minify": "^3.1.0",
+        "gulp-rename": "^2.0.0",
+        "gulp-typescript": "^6.0.0-alpha.1",
+        "merge2": "^1.4.1",
+        "ts-mocha": "^10.0.0",
+        "ts-patch": "^2.0.2",
+        "tsconfig-paths": "^4.1.0",
+        "typescript-transform-paths": "^3.4.4"
+    }
 }
