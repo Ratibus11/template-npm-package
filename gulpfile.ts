@@ -19,12 +19,25 @@ import * as packageJson from "./package.json";
 import * as simpleGit from "simple-git";
 import * as ChildProcess from "child_process";
 
+// ===== TASKS
+
+gulp.task("clean", clean);
+
+gulp.task("build", gulp.series("clean", transpile, minify));
+
+gulp.task("document", gulp.series("clean", generateRawDocumentation, transformDocumentation));
+
+gulp.task(
+    "publishDocumentation",
+    gulp.series("document", cloneRepo, copyDocumentation, publishNewDocumentation)
+);
+
 // ===== VARIABLES
 
 /**
  * Project's repo to publish documentation. Must be a Github repo and finish be `.git`.
  */
-const remoteRepoUrl = "linkToMyRepo";
+const remoteRepoUrl = "https://github.com/Ratibus11/improved-localstorage.git";
 /**
  * Project metadata.
  */
@@ -81,19 +94,6 @@ const foldersToClean = [
     return path.resolve(folderToClean);
 });
 
-// ===== TASKS
-
-gulp.task("clean", clean);
-
-gulp.task("build", gulp.series("clean", transpile, minify));
-
-gulp.task("document", gulp.series("clean", generateRawDocumentation, transformDocumentation));
-
-gulp.task(
-    "publishDocumentation",
-    gulp.series("document", cloneRepo, copyDocumentation, publishNewDocumentation)
-);
-
 // ===== TASKS FUNCTIONS
 
 /**
@@ -106,6 +106,21 @@ function clean(done: gulp.TaskFunctionCallback): void {
             fsExtra.rmSync(folderToClean, { recursive: true });
         }
     });
+
+    // THIS WILL DELETE ALL `.ts` FILES OUTSIDE `src` FOLDER.
+    // PROCEED WITH CAUTION.
+    // SET `process.env.DELETE_TS_OUTSIDE_SRC` ONLY IF YOU'RE SURE YOU CAN GET BACK FILES OR THIS REPO COPY WILL BE DELETE.
+    if (process.env.DELETE_TS_OUTSIDE_SRC) {
+        console.warn("Deleting all .ts files outside the src folder.");
+
+        glob.sync("**/*.ts", { cwd: __dirname })
+            .filter((fileToFilter) => {
+                return !fileToFilter.endsWith(".d.ts") && !fileToFilter.startsWith("src");
+            })
+            .forEach((fileToDelete) => {
+                fsExtra.rmSync(path.resolve(__dirname, fileToDelete));
+            });
+    }
 
     done();
 }
@@ -303,11 +318,13 @@ function publishNewDocumentation(done: gulp.TaskFunctionCallback): void {
 
     const git = simpleGit.simpleGit(paths.documentation.wiki);
 
-    git.add(
-        glob.sync(`${packageData.version}*.md`, {
-            cwd: paths.documentation.versioned,
-        })
-    )
+    git.addConfig("user.name", author.name)
+        .addConfig("user.email", author.email)
+        .add(
+            glob.sync(`${packageData.version}*.md`, {
+                cwd: paths.documentation.versioned,
+            })
+        )
         .then(() => {
             git.commit(
                 `[GULP] Automatically generated documentation for version ${packageData.version}.`
@@ -503,14 +520,14 @@ class DocumentationFileLink {
             case "modules.md":
                 return packageData.version;
             default:
-                return `${packageData.version}/${this.__link
+                return `${packageData.version}-${this.__link
                     .replace(/^\.\.\//g, "")
-                    .replace(/\.md$/g, "")}`
+                    .replace(/\.md$/g, "")
                     .split("/")
-                    .filter((_, index) => {
-                        return index !== 1;
+                    .filter((_, index, array) => {
+                        return array.length < 2 || (array.length >= 2 && index !== 0);
                     })
-                    .join("-");
+                    .join("-")}`;
         }
     }
 
