@@ -6,7 +6,8 @@
         "node_modules": true,
         "package-lock.json": true,
 
-        "app": true,
-        "types": true
-    }
+        "build": true,
+        "docs": true
+    },
+    "cSpell.words": ["npmignore", "Ratibus"]
 }

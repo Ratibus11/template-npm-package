@@ -1,5 +1,5 @@
 /**
- * Subfile import with alias demonstration
+ * Sub-file import with alias demonstration
  * @returns "Hello world!"
  */
 function alias(): string {

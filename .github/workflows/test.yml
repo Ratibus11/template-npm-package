@@ -1,14 +1,16 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
-# For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
-
-name: Tests
+# Run TypeScript Jest's all existing tests (tests/**/*.test.ts files).
+# This workflow is triggered when a file in the src folder is modified. It can also be triggered manually.
+name: Test
 
 on:
-    - push
-    - workflow_dispatch
+    push:
+        paths:
+            - src/**
+    workflow_dispatch:
 
 jobs:
     test:
+        name: Test
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3

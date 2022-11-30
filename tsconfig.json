@@ -3,11 +3,8 @@
         "target": "ES6",
         "module": "CommonJS",
 
-        "baseUrl": ".",
-        "outDir": "app",
-
-        "declaration": true,
-        "declarationMap": false,
+        "baseUrl": "src",
+        "rootDir": ".",
 
         "noImplicitAny": true,
         "noImplicitOverride": true,
@@ -15,19 +12,27 @@
         "noImplicitThis": true,
         "noImplicitUseStrict": true,
 
-        "strictNullChecks": true,
         "strictFunctionTypes": true,
-        "strictPropertyInitialization": true,
+        "strictNullChecks": true,
+
+        "declaration": true,
+        "declarationMap": false,
+
+        "resolveJsonModule": true,
 
         "paths": {
-            "@main": ["src/main"],
-            "@aliasDemonstration": ["src/alias"]
+            "@src/*": ["*"],
+            "@main": ["main"],
+
+            "@aliasDemonstration": ["alias"]
         },
 
         "plugins": [
             { "transform": "typescript-transform-paths" },
             { "transform": "typescript-transform-paths", "afterDeclarations": true }
-        ]
+        ],
+
+        "lib": ["es2021", "dom"]
     },
-    "include": ["src/**/*.ts", "tests/**/*.ts"]
+    "include": ["**/*.ts"]
 }
