@@ -1,193 +1,211 @@
-# TEMPLATE - NPM package
+# :package: TEMPLATE - NPM Package
 
-A basic template for NPM packages with TypeScript, Gulp and Mocha/Chai.js.
+## :notebook: Table of content
 
-## Table of content
+-   [What does it contains?](#📚-what-does-it-contains)
+-   [How can I start with it?](#⚙️-how-can-i-use-it)
+-   [Checklist](#📝-checklist)
+-   [Project structure](#📂-project-structure)
+-   [How can I use it?](#💡-how-can-i-use-it)
+    -   [NPM scripts](#⚙️-npm-scripts)
+        -   [`clean`](#💥-clean)
+        -   [`build`](#🔧-build)
+        -   [`document`](#📑-doc)
+        -   [`publishDocumentation`](#🌐-publishdocumentation)
+        -   [`prepare`](#⚙️-prepare)
+        -   [`prepublishOnly`](#📦-prepublishonly)
+        -   [`test`](#📝-test)
+    -   [Github workflows](#🤖-github-workflows)
+        -   [`publish-documentation`](#🌐-publish-documentation)
+        -   [`publish`](#🌐-publish)
+        -   [`test`](#f09f939d-test-1)
+-   [Contribute](#👥-contribute)
+-   [License](#🔖-license)
 
--   [What does it contains?](#what-does-it-contains)
--   [How can I start with it?](#how-can-i-start-with-it)
--   [Checklist](#checklist)
--   [What is the template's structure?](#what-is-the-templates-structure)
--   [How can I use it?](#how-can-i-use-it)
--   [Contributing](#contributing)
--   [License](#license)
--   [Credits to dependencies](#credits-to-dependencies)
-
-## What does it contains?
+## :books: What does it contains?
 
 This repository contains tools to start development of NPM packages with:
 
--   [TypeScript](https://www.typescriptlang.org/) - Typed version of JavaScript
--   [Mocha](https://mochajs.org/)/[Chai.js](https://www.chaijs.com/) - Tests and assertions libraries (used to test project's features)
+-   [TypeScript](https://www.typescriptlang.org) - Typed version of JavaScript.
+-   [Gulp](https://gulpjs.com) - Tasks runner: used to perform build and documentation publication tasks.
+-   [Jest](https://jestjs.io) - Tests framework.
 
-## How can I start with it?
+## :key: How can I start with it?
 
-1. Download a copy of this repo [here](https://github.com/Ratibus11/template-npm-package/archive/refs/heads/main.zip) and uncompress it.
-2. Initialize a git instance in the folder. Open your terminal and type:
+1. Download the latest version of the repo here.
+2. Decompress the downloaded .zip.
+3. Initialize a git repository in the folder with the following commands:
 
 ```bash
-cd path/to/the/repo
+cd path/to/my/repo
 git init
 ```
 
-3. Open the folder with your favorite IDE.
-4. _Let's code!_
+<div align="right">More information about <code>git init</code> on the <a href="https://git-scm.com/docs/git-init">official documentation</a>.</div>
 
-## Checklist
+4. Open the folder with you favorite IDE.
+5. There you are, let's code!
 
-Don't forget to check some points before coding and publishing!
+## :pencil: Checklist
 
--   Has your package the correct manifest? (`package.json` (see [NPM documentation](https://docs.npmjs.com/cli/v8/configuring-npm/package-json) for more informations))
-    -   Name (name and display name)
-    -   Description
-    -   Version
-    -   Author (name and/or url and/or email address)
-    -   Keywords
-    -   Homepage and bugs links
--   Is your license the one you want? (Check [choosealicence](https://choosealicense.com/) for more informations)
--   Is your package's version the good one? See [Semver](https://semver.org/) for more informations.
--   Did you removed `"private": true` from `package.json`? By security, you cannot publish this template on NPM. Just remove this line to do it!
+This repo is maded with many details I recommend you to check:
 
-> **_IMPORTANT_**: You can publish only one time a specific version for a specific package name. So, be sure about your doing before publishing. See [NPM documentation](https://docs.npmjs.com/cli/v8/commands/npm-publish) for more informations.
+-   Had your package the correct manifest? (`package.json` ([see NPM documentation for more information](https://docs.npmjs.com/cli/v8/configuring-npm/package-json)))
+    -   Name (name and display name).
+    -   Description.
+    -   Version (more information about versioning semantic on [Semver](https://semver.org)).
+    -   License (more information about licences you can use on [choosealicense](https://choosealicense.com/))
+    -   Author (name and/or url and/or email address).
+    -   Keywords.
+    -   Repo, homepage and issues links.
+    -   ...
+-   Did you removed `"private": true` from your `package.json`? By security, you cannot publish this template on NPM. Just remove this line to do it!
 
-## What is the template's structure?
+> <u>_**IMPORTANT**_</u>: You can publish only one time a specific version for a specific package name. So, be sure about your doing before publishing. See [NPM documentation for more information](https://docs.npmjs.com/cli/v8/commands/npm-publish).
 
--   Folders:
+## :open_file_folder: Project structure
 
-    -   `.git` - Used by Git to manage your repo. Don't touch it without knowing what you're doing!
-    -   `.github` - Used by GitHub to manage some things like workflows. See [here](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions) for more informations about GitHub Actions and it's workflows.
-    -   [`.vscode`](https://code.visualstudio.com/docs/getstarted/settings#_workspace-settings) - VScode's workspace settings. Used here to hide some unused/unwanted elements. Can contains more functionalities like debug and tasks You can change it as you want/need.
-    -   `app` - Folder which contains transpiled project. Basically, you don't need to see it.
-    -   [`node_modules`](https://docs.npmjs.com/cli/v7/configuring-npm/folders#node-modules) - Folder which contains Node.js local modules.
-    -   `src` - Sources folder, where you code your project.
-    -   `tests` - Tests folder, where you write your features' tests.
-    -   `types` - Typescript declarations folder, for TypeScript developpers. Basically, you don't need to see it.
+This section presents you the template's structure. Get more information about these elements by clicking on them.
 
--   Files:
-    -   [`.gitignore`](https://git-scm.com/docs/gitignore) - Used by Git to ignore unwanted files/folders for commits.
-    -   [`.npmignore`](https://docs.npmjs.com/cli/v8/using-npm/developers#keeping-files-out-of-your-package) - Used by NPM to ignore unwanted files/folders in the published package.
-    -   [`gulpfile.js`](https://gulpjs.com/docs/en/getting-started/javascript-and-gulpfiles/) - Gulp tasks file. Used to build the project, but can be extended to do other tasks.
-    -   `LICENSE` - A way to store your package's licence.
-    -   [`package-lock.json`](https://docs.npmjs.com/cli/v8/configuring-npm/package-lock-json) - Used by Node.js to list installed packages.
-    -   [`package.json`](https://docs.npmjs.com/cli/v8/configuring-npm/package-json) - Your package's Node.js manifest.
-    -   `README.md` - Your package's information file. Github can display a README file in each folder. NPM will only display root README.
-    -   [`tsconfig.json`](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) - Configuration for Typescript Intellisense and transpilation.
+-   [`.github/workflows`](https://docs.github.com/en/actions/using-workflows) -
+-   `.vscode` - [VScode](https://code.visualstudio.com)'s workspace settings.
+    -   [`extensions.json`](https://code.visualstudio.com/docs/editor/extension-marketplace#_workspace-recommended-extensions) - You can list VScode extensions you recommend for this workspace.
+    -   [`settings.json`](https://code.visualstudio.com/docs/getstarted/settings#_settingsjson) - You can set custom settings especially for this workspace, and every user will use these settings first.
+-   `src` - Your application's source code (here you will mostly use TypeScript).
+    -   `main.ts` - Is your application's entrypoint. This is here that all starts.
+-   `tests` - Your application's tests.
+-   [`.gitignore`](https://git-scm.com/docs/gitignore) - List files which will not be tracked by Git. Developers community strongly recommend to **not** track generated files (like build files, ...), so, add them here.
+-   [`.npmignore`](https://docs.npmjs.com/cli/using-npm/developers#keeping-files-out-of-your-package) - List files which will not be included when your package will published on NPM. As is, only `LICENSE`, `package.json`, `README.md`, and `app` folder will be published.
+-   [`gulpfile.ts`](https://gulpjs.com/docs/en/getting-started/creating-tasks) - [Gulp](https://gulpjs.com/)'s tasks file.
+-   [`jest.config.ts`](https://jestjs.io/docs/configuration) - [Jest](https://jestjs.io) is a tests framework to run tests on your application. This file allows you to customize Jest's configuration.
+-   [`LICENSE`](https://choosealicense.com/) - Your project's license. This file generally contains legal terms about how a third-party person can use your project.
+-   [`package.json`](https://docs.npmjs.com/cli/configuring-npm/package-json) - NPM's package manifest.
+-   [`README.md`](https://www.makeareadme.com/) - This file! Here you can (and should) write every important information about your project (presentation, get started, ...)
+-   [`tsconfig.json`](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) - Configuration for [Typescript](https://www.typescriptlang.org) Intellisense and transpilation.
 
-## How can I use it?
+While working, you may see more folders, here are they:
 
-> **_NOTE:_** On `npm publish`, intallation will be performed, then `test`, then `build` scripts will be called before publishing.
+-   `app` - This folder contains your builded application:
+    -   `app.js` - When completely builded, all your application will take place in this single file.
+    -   `types` - This folder will contain [TypeScript's declaration files](https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-d-ts.html). These files are very important for TypeScript developers who'll use your package.
+    -   `.tmp` - Is a temporary folder which contains only transpiled files of your application before being minified in `app.js`.
+-   `docs` - Is a folder which contains all your application's documentation. I recommend you to have a look to ... to understand this content:
+    -   `x.x.x` - Is your application version `x.x.x`'s documentation, ready to be published on your Github repo's Wiki.
+    -   `.github-wiki` - Is a clone of your Github repo's Wiki.
+    -   `.tmp` - Is a raw version of your project's documentation, as generated by [TypeDoc](https://typedoc.org/).
 
--   NPM scripts (`npm run ...`):
-    -   `test` - Will load all `.ts` files in `/tests` (and subfolders) and launch all tests. You don't need to compile your project to perform tests.
-    -   `build` - Will build the project: `/app` and `/types` will be both cleared and will contain:
-        -   `/app` - All `.ts` files from `/src` (and subfolders), compiled and minified to `.js`.
-        -   `/types` - All typings and descriptions from `.ts` files from `/src` (and subfolders)'s declation.
-    -   Some of the scripts [are handled by NPM](https://docs.npmjs.com/cli/v9/using-npm/scripts):
-        -   `prepare` - Will patch Typescript to rewrite paths aliases while transpiling.
-        -   `prepublishOnly` - Called before publishing your package.
+## :bulb: How can I use it?
 
-The following exemple show the project's compilation with the current `tsconfig.json` and `src/main.ts`:
+### :gear: NPM scripts
 
-```ts
-// src/main.ts - The projetct's entry.
-// Import of subfile with TS alias
-// `ts-patch` and `typescript-transform-paths` will be able to rewrite Typescript imports while transpiling to `.js` and `.d.ts`.
-// Run `npm i` to ensure that `ts-patch` was runned.
-import * as aliasDemonstration from "@aliasDemonstration";
+This template is equipped with multiple [NPM scripts](https://docs.npmjs.com/cli/using-npm/scripts). Here are how you can use them (`npm run ...`):
 
-/**
- * Exported test function
- * This function is accessible by using `import { hi } from "myModule"`
- * @returns "Hello world!"
- */
-function hi(): string {
-    return "Hello world!";
-}
+#### :wrench: `build`
 
-export { hi, aliasDemonstration };
+> _Is equal to `gulp build`._
 
-// src/alias.ts - src/main.ts dependency.
-/**
- * Subfile import with alias demonstration
- * @returns "Hello world!"
- */
-function alias(): string {
-    return "Hello world!";
-}
+Build your application in the `app` folder.
 
-export { alias };
-```
+<details>
 
-Transpiled Javascript:
+<summary>Get more details here</summary>
 
-<!-- prettier-ignore-start -->
-```js
-// app/main.js - The transpiled and minified version of src/main.ts
-Object.defineProperty(exports,"__esModule",{value:!0}),exports.aliasDemonstration=exports.hi=void 0;const aliasDemonstration=require("./alias");function hi(){return"Hello world!"}exports.aliasDemonstration=aliasDemonstration,exports.hi=hi;
+1. From the app's entrypoint (`src/main.ts`), will generate a transpiled version of your app in `app/.tmp` and its [TypeScript declaration files](https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-d-ts.html) in `app/types`.
+2. From the transpiled app's entrypoint (`app/.tmp/main.js`), will minify and bundle all the code into a single file (`app/app.js`).
+3. Proceed clean by deleting `app/.tmp` folder.
 
-// app/alias.js - app/main.js dependency
-function alias(){return"Hello world!"}Object.defineProperty(exports,"__esModule",{value:!0}),exports.alias=void 0,exports.alias=alias;
-```
+</details>
 
-<!-- prettier-ignore-end -->
+#### :boom: `clean`
 
-Extracted declaration:
+> _Is equal to `gulp clean`._
 
-```ts
-// types/main.d.ts - Needed by TypeScript developers to use your package. Like this way, developers don't need to install another package to get declarations.
-import * as aliasDemonstration from "./alias";
-/**
- * Exported test function
- * This function is accessible by using `import { hi } from "myModule"`
- * @returns "Hello world!"
- */
-declare function hi(): string;
-export { hi, aliasDemonstration };
+Delete generated files/folders.
 
-// types/alias.d.ts - src/alias.ts's declaration file
-/**
- * Subfile import with alias demonstration
- * @returns "Hello world!"
- */
-declare function alias(): string;
-export { alias };
-```
+#### :bookmark_tabs: `document`
 
-As you can see, alias was used to import `src/alias.ts` in `src/main.ts` and they were rewrited while transpiling. You can use your own aliases for your project. See [TypeScript's config file (`tsconfig.json`)](https://www.typescriptlang.org/tsconfig#paths) for more details.
+> _Is equal to `gulp document`._
 
-## Workflows
+Generate Github Wiki-ready documentation.
 
-If your remote Git platform is GitHub, workflows will run (see [`/.github/workflows`](https://www.google.com/search?client=firefox-b-d&q=github+workflow)):
+<details>
 
--   `test` - Called after each push, will run all repo's tests (= `npm run test`)
--   `npm-publish` - Called when a release is created on GitHub: will install all modules, test and publish the package (Tests and build will be successively called before the publication. The publications will be effective only if the build and tests successed.) (= `npm publish`)
+<summary>Get more details here</summary>
 
-## Contributing
+1. Will generate your application's documentation as [Markdown](https://www.markdownguide.org/basic-syntax/) files with [TypeDoc](https://typedoc.org/guides/installation/) (in `docs/.tmp`).
+2. Will load all TypeDoc's documentation (from `docs/.tmp`) and rewrite all links to other documentation files (`http...` links are not modified) and save the edited file in the versioned documentation folder (`docs/x.x.x`, where `x.x.x` is your `package.json`'s `version` field.):
+    - For example, a file called `path/to/my/docs/.tmp/classes/aCustomError.md` will be saved as `path/to/my/docs/x.x.x/x.x.x-aCustomError.md`.
+    - For example, a link as `../classes/aCustomError.md` will be saved as `x.x.x-aCustomError`.
+    - Like this, all version's files are prefixed by their version's tag. All your project's documentation can be uploaded to your wiki without risk (as all 3.0.0 files are prefixed by `3.0.0-`, 2.0.0 by `2.0.0-`, and so on...)
 
-Feel free to [open an issue](https://github.com/Ratibus11/template-npm-package/issues/new) if you want to discuss about suggestions!
+</details>
 
-## License
+> _To prevent redundancy with documentation files, your project's README will note be included in the per version-documentation. The version documentation's entrypoint will be called `x.x.x.md`, where your main documentation's entrypoint will be `Home.md`, the Github wiki's main file that you have to create._
+
+#### :globe_with_meridians: `publishDocumentation`
+
+> _Is equal to `gulp publishDocumentation`._
+
+Will publish your application current version's documentation on your Github repo's wiki.
+
+> _To run this functionnality, you must host your repo on Github and have the [wiki service](https://docs.github.com/en/communities/documenting-your-project-with-wikis/about-wikis) enabled._
+
+<details>
+
+<summary>Get more details here</summary>
+
+1. Will run [`document`](#📑-document) task to generated Github wiki-ready documentation.
+2. Will clone the wiki repo as `docs/.github-wiki`.
+3. Will copy your `x.x.x` version documentation in the wiki's clone.
+4. Will commit and push all new documentation.
+
+</details>
+
+> _For safety purpose, you will not be able to publish documentation for version `a.b.c` if any file prefixed by `a.b.c-` already exists in the wiki's repo. To bypass it, you have to first delete all `a.b.c-` files, then run again this task._
+
+#### :gear: `prepare`
+
+Is an utility command which will patch TypeScript's behavior while resolving [aliases](https://www.typescriptlang.org/tsconfig/paths.html).
+
+#### :package: `prepublishOnly`
+
+Is a [NPM "special" script](https://docs.npmjs.com/cli/v9/using-npm/scripts) triggered [before publishing the package on NPM](https://docs.npmjs.com/cli/v9/using-npm/scripts#npm-publish). It will build the application (`npm run build`).
+
+#### :pencil: `test`
+
+Will run Jest and load all [`tests/**/*.test.ts` files](https://jestjs.io/docs/getting-started).
+
+### :robot: Github Workflows
+
+Github provides a workflow service which can run commands on specific events. These configurations files are stored in `.github/workflows`:
+
+#### :globe_with_meridians: `publish-documentation`
+
+Called manually, this workflow will run the `publishDocumentation` task to publish the current version's documentation on the Github repo's wiki.
+
+#### :globe_with_meridians: `publish`
+
+Called when a release is created, it will run sequentially `test` (_Jest_), `publish` (_publish the package on NPM_) and `publishDocumentation` (_publish the documentation on the Github repo's wiki_) tasks.
+
+#### :pencil: `test`
+
+Called manually or when an edition in the `src` folder is pushed to the remote repo, it will run `test` task.
+
+## :busts_in_silhouette: Contribute
+
+Feel free to [open an issue](https://github.com/Ratibus11/improved-localstorage/issues/new) if you want to report bugs or discuss about suggestions!
+
+## :bookmark: License
 
 This package is published under the [Unlicensed](https://choosealicense.com/licenses/unlicense/) license.
-
-## Credits to dependencies
-
-Using multiple modules:
-
--   dependencies:
-    -   _nothing, it's up to you to find what you need!_
--   Development dependencies:
-    -   [`chai`](https://www.npmjs.com/package/chai) - Assertions (tests)
-    -   [`glob`](https://www.npmjs.com/package/glob) - Multiple files selection (build)
-    -   [`gulp`](https://www.npmjs.com/package/gulp) - Tasks runner (build)
-    -   [`gulp-minify`](https://www.npmjs.com/package/gulp-minify) - Gulp plugin for files minifying (build)
-    -   [`gulp-rename`](https://www.npmjs.com/package/gulp-rename) - Gulp plugin for files renaming (build)
-    -   [`gulp-typescript`](https://www.npmjs.com/package/gulp-typescript) - Gulp plugin for Typescript compilation (build)
-    -   [`rewire`](https://www.npmjs.com/package/rewire) - Access module's private elements (tests)
-    -   [`ts-mocha`](https://www.npmjs.com/package/ts-mocha) - Typescript version of Mocha (tests)
-    -   [`ts-patch`](https://www.npmjs.com/package/ts-patch) - Patch for Typescript aliases rewrite _(build)_
-    -   [`tsconfig-paths`](https://www.npmjs.com/package/tsconfig-paths) - Loader for `tsconfig.json` aliases _(tests)_
-    -   [`typescript-transform-paths`](https://www.npmjs.com/package/typescript-transform-paths) - Typescript plugin for aliases rewrite _(build)_
+See in LICENSE in the repo's root.
 
 <div align="right">Made with &#10084; by <a href="https://github.com/Ratibus11">Ratibus11</a>.</div>
-````
+
+![](https://img.shields.io/github/stars/ratibus11/template-npm-package?style=social)
+
+<sup>
+
+_Don't_ forget [_to put a_ :star:](https://github.com/Ratibus11/template-npm-package) _if you like this project_ :wink:_!_
+
+</sup>
