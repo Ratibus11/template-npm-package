@@ -9,5 +9,14 @@
         "build": true,
         "docs": true
     },
-    "cSpell.words": ["chaijs", "choosealicense", "gulpfile", "npmignore", "ratibus", "Ratibus"]
+    "cSpell.words": [
+        "chaijs",
+        "choosealicense",
+        "github",
+        "Github",
+        "gulpfile",
+        "npmignore",
+        "ratibus",
+        "Ratibus"
+    ]
 }
