@@ -9,5 +9,5 @@
         "build": true,
         "docs": true
     },
-    "cSpell.words": ["npmignore", "Ratibus"]
+    "cSpell.words": ["chaijs", "choosealicense", "gulpfile", "npmignore", "ratibus", "Ratibus"]
 }

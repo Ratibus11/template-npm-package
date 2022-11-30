@@ -48,13 +48,13 @@ git init
 
 ## Checklist
 
-This repo is maded with many details I recommend you to check:
+This repo is made with many details I recommend you to check:
 
 -   Had your package the correct manifest? (`package.json` ([see NPM documentation for more information](https://docs.npmjs.com/cli/v8/configuring-npm/package-json)))
     -   Name (name and display name).
     -   Description.
     -   Version (more information about versioning semantic on [Semver](https://semver.org)).
-    -   License (more information about licences you can use on [choosealicense](https://choosealicense.com/))
+    -   License (more information about licenses you can use on [choosealicense](https://choosealicense.com/))
     -   Author (name and/or url and/or email address).
     -   Keywords.
     -   Repo, homepage and issues links.
@@ -148,7 +148,7 @@ Generate Github Wiki-ready documentation.
 
 Will publish your application current version's documentation on your Github repo's wiki.
 
-> _To run this functionnality, you must host your repo on Github and have the [wiki service](https://docs.github.com/en/communities/documenting-your-project-with-wikis/about-wikis) enabled._
+> _To run this functionality, you must host your repo on Github and have the [wiki service](https://docs.github.com/en/communities/documenting-your-project-with-wikis/about-wikis) enabled._
 
 <details>
 
