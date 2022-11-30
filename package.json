@@ -8,8 +8,7 @@
         "template",
         "typescript",
         "gulp",
-        "mocha",
-        "chaijs"
+        "jest"
     ],
     "license": "SEE LICENSE IN LICENSE",
     "author": {
@@ -20,8 +19,8 @@
     "repository": "github:ratibus11/template-npm-package",
     "homepage": "https://github.com/Ratibus11/template-npm-package",
     "bugs": "https://github.com/Ratibus11/template-npm-package/issues",
-    "main": "app/main.js",
-    "types": "types/main.d.ts",
+    "main": "app/app.js",
+    "types": "app/types/main.d.ts",
     "scripts": {
         "build": "gulp build",
         "clean": "gulp clean",
