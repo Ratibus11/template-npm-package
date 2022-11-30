@@ -163,7 +163,7 @@ Will publish your application current version's documentation on your GitHub rep
 
 > _For safety purpose, you will not be able to publish documentation for version `a.b.c` if any file prefixed by `a.b.c-` already exists in the wiki's repo. To bypass it, you have to first delete all `a.b.c-` files, then run again this task._
 
-> <u>_**CAUTION**</u>: Because of an unexpected behavior by TypeDoc on GitHub Actions, all `.ts` files outside `src` folder are deleted during this task if the environment variable `DELETE_TS_OUTSIDE_SRC` is defined.. Don't set a value to this environment variable if you're not sure to retrieve your files. Basically, this value will only be defined in a GitHub Actions workflow and should not be necessary anywhere else._
+> <u>_**CAUTION**</u>: Because of an unexpected behavior by TypeDoc on GitHub Actions, all `.ts` files outside `src` folder are deleted during this task if the environment variable `DELETE_TS_OUTSIDE_SRC` is defined. Don't set a value to this environment variable if you're not sure to retrieve your files. Basically, this value will only be defined in a GitHub Actions workflow and should not be necessary anywhere else._
 
 #### `prepare`
 
