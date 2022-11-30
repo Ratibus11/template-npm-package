@@ -24,7 +24,7 @@ import * as ChildProcess from "child_process";
 /**
  * Project's repo to publish documentation. Must be a Github repo and finish be `.git`.
  */
-const remoteRepoUrl = "https://github.com/Ratibus11/improved-localstorage.git";
+const remoteRepoUrl = "linkToMyRepo";
 /**
  * Project metadata.
  */

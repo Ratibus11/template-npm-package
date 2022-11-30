@@ -193,7 +193,7 @@ Called manually or when an edition in the `src` folder is pushed to the remote r
 
 ## Contribute
 
-Feel free to [open an issue](https://github.com/Ratibus11/improved-localstorage/issues/new) if you want to report bugs or discuss about suggestions!
+Feel free to [open an issue](https://github.com/Ratibus11/template-npm-package/issues/new) if you want to report bugs or discuss about suggestions!
 
 ## License
 
