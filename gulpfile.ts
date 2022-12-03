@@ -2,28 +2,21 @@ import * as gulp from "gulp";
 
 // ===== GULP PLUGINS
 
-import * as gulpTypescript from "gulp-typescript";
-import * as gulpUglify from "gulp-uglify";
 import * as gulpTypedoc from "gulp-typedoc";
 
 // ===== UTILS
 
 import * as fsExtra from "fs-extra";
 import * as path from "path";
-import * as merge2 from "merge2";
-import * as browserify from "browserify";
-import * as vinylSourceStream from "vinyl-source-stream";
-import * as vinylBuffer from "vinyl-buffer";
 import * as glob from "glob";
-import * as packageJson from "./package.json";
 import * as simpleGit from "simple-git";
 import * as ChildProcess from "child_process";
+
+import * as packageJson from "./package.json";
 
 // ===== TASKS
 
 gulp.task("clean", clean);
-
-gulp.task("build", gulp.series("clean", transpile, minify));
 
 gulp.task("document", gulp.series("clean", generateRawDocumentation, transformDocumentation));
 
@@ -44,7 +37,6 @@ const remoteRepoUrl = "https://github.com/Ratibus11/improved-localstorage.git";
 const packageData = {
     version: packageJson.version!,
     name: {
-        package: packageJson.name,
         display: {
             name: packageJson.displayName,
             versioned: `${packageJson.displayName} - ${packageJson.version!}`,
@@ -59,25 +51,11 @@ const documentationDetectionTries = 10;
  * Project's paths.
  */
 const paths = {
-    tsconfig: path.resolve("tsconfig.json"),
     source: {
-        glob: path.resolve("src/**/*.ts"),
         entry: path.resolve("src/main.ts"),
-    },
-    transpiled: {
-        folder: path.resolve("app/.tmp"),
-        entry: path.resolve("app/.tmp/main.js"),
-    },
-    build: {
-        js: {
-            path: path.resolve("app"),
-            name: "app.js",
-        },
-        dts: path.resolve("app/types"),
     },
     documentation: {
         typedocGeneration: path.resolve("docs/.tmp"),
-        root: path.resolve("docs"),
         versioned: path.resolve("docs", packageData.version),
         wiki: path.resolve("docs/.github-wiki"),
     },
@@ -86,7 +64,6 @@ const paths = {
  * List of folders to delete before tasks' launch.
  */
 const foldersToClean = [
-    paths.build.js.path,
     paths.documentation.versioned,
     paths.documentation.wiki,
     paths.documentation.typedocGeneration,
@@ -107,57 +84,7 @@ function clean(done: gulp.TaskFunctionCallback): void {
         }
     });
 
-    // THIS WILL DELETE ALL `.ts` FILES OUTSIDE `src` FOLDER.
-    // PROCEED WITH CAUTION.
-    // SET `process.env.DELETE_TS_OUTSIDE_SRC` ONLY IF YOU'RE SURE YOU CAN GET BACK FILES OR THIS REPO COPY WILL BE DELETE.
-    if (process.env.DELETE_TS_OUTSIDE_SRC) {
-        console.warn("Deleting all .ts files outside the src folder.");
-
-        glob.sync("**/*.ts", { cwd: __dirname })
-            .filter((fileToFilter) => {
-                return !fileToFilter.endsWith(".d.ts") && !fileToFilter.startsWith("src");
-            })
-            .forEach((fileToDelete) => {
-                fsExtra.rmSync(path.resolve(__dirname, fileToDelete));
-            });
-    }
-
     done();
-}
-
-/**
- * Transpile TypeScript project to declarations (`.d.ts` in `app/types`) and JavaScript (`.js` in `app/tmp`) files.
- * @remarks At this point, JS files are only transpiled and not bundled/minified.
- * @param done Callback function.
- */
-function transpile(done: gulp.TaskFunctionCallback): merge2.Merge2Stream {
-    const typescriptProject = gulpTypescript.createProject(paths.tsconfig);
-    const typescriptResult = gulp.src(paths.source.glob).pipe(typescriptProject());
-
-    return merge2([
-        typescriptResult.js.pipe(gulp.dest(paths.transpiled.folder)),
-        typescriptResult.dts.pipe(gulp.dest(paths.build.dts)),
-    ]);
-}
-
-/**
- * Load transpiled JS files (`app/tmp`) an minify them in a single file (`app/app.js`).
- * @param done Callback function.
- */
-function minify(done: gulp.TaskFunctionCallback): void {
-    browserify({
-        entries: paths.transpiled.entry,
-        debug: true,
-    })
-        .bundle()
-        .pipe(vinylSourceStream(paths.build.js.name))
-        .pipe(vinylBuffer())
-        .pipe(gulpUglify())
-        .pipe(gulp.dest(paths.build.js.path))
-        .on("end", () => {
-            fsExtra.rmSync(paths.transpiled.folder, { recursive: true });
-            done();
-        });
 }
 
 /**
