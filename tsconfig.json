@@ -24,7 +24,9 @@
 
         "paths": {
             "@src/*": ["*"],
-            "@main": ["main"]
+            "@main": ["main"],
+
+            "@aliasDemonstration": ["alias"]
         },
 
         "lib": ["es2021", "dom"],
@@ -34,5 +36,5 @@
             { "transform": "typescript-transform-paths", "afterDeclarations": true }
         ]
     },
-    "include": ["src/**/*.ts"]
+    "include": ["**/*.ts"]
 }
