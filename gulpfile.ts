@@ -2,7 +2,7 @@ import * as gulp from "gulp";
 
 // ===== GULP PLUGINS
 
-import * as gulpTypedoc from "gulp-typedoc";
+import gulpTypedoc from "gulp-typedoc";
 
 // ===== UTILS
 
@@ -20,7 +20,12 @@ gulp.task("clean", cleanAll);
 
 gulp.task(
     "document",
-    gulp.series("clean", cleanDocumentation, generateRawDocumentation, transformDocumentation)
+    gulp.series(
+        cleanDocumentation,
+        cleanDocumentation,
+        generateRawDocumentation,
+        transformDocumentation
+    )
 );
 
 gulp.task(
