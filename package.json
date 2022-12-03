@@ -22,43 +22,31 @@
     "main": "app/app.js",
     "types": "app/types/main.d.ts",
     "scripts": {
-        "build": "gulp build",
-        "clean": "gulp clean",
-        "document": "gulp document",
+        "build": "webpack",
         "publishDocumentation": "gulp publishDocumentation",
+        "test": "jest --runInBand",
         "prepare": "ts-patch install -s",
-        "prepublishOnly": "gulp build",
-        "test": "jest --runInBand"
+        "prepublishOnly": "npm run build"
     },
     "dependencies": {
-        "@types/browserify": "^12.0.37",
-        "@types/fs-extra": "^9.0.13",
-        "@types/gulp": "^4.0.10",
-        "@types/gulp-uglify": "^3.0.7",
-        "@types/merge2": "^1.4.0",
-        "@types/node": "^18.11.9",
-        "@types/vinyl-buffer": "^1.0.0",
-        "@types/vinyl-source-stream": "^0.0.30",
-        "browserify": "^17.0.0",
         "cross-env": "^7.0.3",
-        "fs-extra": "^10.1.0",
-        "glob": "^8.0.3",
+        "fs-extra": "^11.1.0",
         "gulp": "^4.0.2",
         "gulp-typedoc": "^3.0.2",
-        "gulp-typescript": "^6.0.0-alpha.1",
-        "gulp-uglify": "^3.0.2",
-        "merge2": "^1.4.1",
-        "simple-git": "^3.15.0",
+        "simple-git": "^3.15.1",
+        "ts-loader": "^9.4.2",
         "ts-node": "^10.9.1",
         "ts-patch": "^2.0.2",
-        "typedoc-plugin-markdown": "^3.13.6",
+        "typedoc-plugin-markdown": "^3.14.0",
         "typescript-transform-paths": "^3.4.4",
-        "vinyl-buffer": "^1.0.1",
-        "vinyl-source-stream": "^2.0.0"
+        "webpack": "^5.75.0"
     },
     "devDependencies": {
+        "@types/fs-extra": "^9.0.13",
+        "@types/glob": "^8.0.0",
+        "@types/gulp": "^4.0.10",
         "@types/jest": "^29.2.3",
-        "jest": "^29.3.1",
-        "ts-jest": "^29.0.3"
+        "ts-jest": "^29.0.3",
+        "webpack-cli": "^5.0.0"
     }
 }
