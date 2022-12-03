@@ -8,12 +8,12 @@
 -   [Project structure](#project-structure)
 -   [How can I use it?](#how-can-i-use-it)
     -   [NPM scripts](#npm-scripts)
-        -   [`clean`](#clean)
         -   [`build`](#build)
+        -   [`clean`](#clean)
         -   [`document`](#doc)
-        -   [`publishDocumentation`](#publishdocumentation)
         -   [`prepare`](#prepare)
         -   [`prepublishOnly`](#prepublishonly)
+        -   [`publishDocumentation`](#publishdocumentation)
         -   [`test`](#test)
     -   [GitHub workflows](#GitHub-workflows)
         -   [`publish-documentation`](#publish-documentation)
@@ -102,17 +102,15 @@ This template is equipped with multiple [NPM scripts](https://docs.npmjs.com/cli
 
 #### `build`
 
-> _Is equal to `gulp build`._
+> _Is equal to `webpack`._
 
-Build your application in the `app` folder.
+Build your application and emit its declaration in the `app` folder.
 
 <details>
 
 <summary>Get more details here</summary>
 
-1. From the app's entrypoint (`src/main.ts`), will generate a transpiled version of your app in `app/.tmp` and its [TypeScript declaration files](https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-d-ts.html) in `app/types`.
-2. From the transpiled app's entrypoint (`app/.tmp/main.js`), will minify and bundle all the code into a single file (`app/app.js`).
-3. Proceed clean by deleting `app/.tmp` folder.
+From the app's entrypoint (`src/main.ts`), will generate a transpiled JavaScript and bundled version of your application in `app/app.js` and its declaration in `app/types`.
 
 </details>
 
@@ -120,7 +118,7 @@ Build your application in the `app` folder.
 
 > _Is equal to `gulp clean`._
 
-Delete generated files/folders.
+Delete generated files/folders (app and documentation).
 
 #### `document`
 
@@ -132,8 +130,9 @@ Generate GitHub Wiki-ready documentation.
 
 <summary>Get more details here</summary>
 
-1. Will generate your application's documentation as [Markdown](https://www.markdownguide.org/basic-syntax/) files with [TypeDoc](https://typedoc.org/guides/installation/) (in `docs/.tmp`).
-2. Will load all TypeDoc's documentation (from `docs/.tmp`) and rewrite all links to other documentation files (`http...` links are not modified) and save the edited file in the versioned documentation folder (`docs/x.x.x`, where `x.x.x` is your `package.json`'s `version` field.):
+1. Will delete temporary-generated (`docs/.tmp`) and current (`docs/x.x.x`) version documentation.
+2. Will generate your application's documentation as [Markdown](https://www.markdownguide.org/basic-syntax/) files with [TypeDoc](https://typedoc.org/guides/installation/) (in `docs/.tmp`).
+3. Will load all TypeDoc's documentation (from `docs/.tmp`) and rewrite all links to other documentation files (`http...` links are not modified) and save the edited file in the versioned documentation folder (`docs/x.x.x`, where `x.x.x` is your `package.json`'s `version` field.):
     - For example, a file called `path/to/my/docs/.tmp/classes/aCustomError.md` will be saved as `path/to/my/docs/x.x.x/x.x.x-aCustomError.md`.
     - For example, a link as `../classes/aCustomError.md` will be saved as `x.x.x-aCustomError`.
     - Like this, all version's files are prefixed by their version's tag. All your project's documentation can be uploaded to your wiki without risk (as all 3.0.0 files are prefixed by `3.0.0-`, 2.0.0 by `2.0.0-`, and so on...)
@@ -142,13 +141,19 @@ Generate GitHub Wiki-ready documentation.
 
 > _To prevent redundancy with documentation files, your project's README will note be included in the per version-documentation. The version documentation's entrypoint will be called `x.x.x.md`, where your main documentation's entrypoint will be `Home.md`, the GitHub wiki's main file that you have to create._
 
+#### `prepare`
+
+Is an utility command which will patch TypeScript's behavior to rewrite [aliases](https://www.typescriptlang.org/tsconfig/paths.html).
+
+#### `prepublishOnly`
+
+Is a [NPM "special" script](https://docs.npmjs.com/cli/v9/using-npm/scripts) triggered [before publishing the package on NPM](https://docs.npmjs.com/cli/v9/using-npm/scripts#npm-publish). It will build the application (`npm run build`).
+
 #### `publishDocumentation`
 
 > _Is equal to `gulp publishDocumentation`._
 
 Will publish your application current version's documentation on your GitHub repo's wiki.
-
-> _To run this functionality, you must host your repo on GitHub and have the [wiki service](https://docs.github.com/en/communities/documenting-your-project-with-wikis/about-wikis) enabled._
 
 <details>
 
@@ -161,17 +166,9 @@ Will publish your application current version's documentation on your GitHub rep
 
 </details>
 
+> _To run this functionality, you must host your repo on GitHub and have the [wiki service](https://docs.github.com/en/communities/documenting-your-project-with-wikis/about-wikis) enabled._
+
 > _For safety purpose, you will not be able to publish documentation for version `a.b.c` if any file prefixed by `a.b.c-` already exists in the wiki's repo. To bypass it, you have to first delete all `a.b.c-` files, then run again this task._
-
-> <u>_**CAUTION**</u>: Because of an unexpected behavior by TypeDoc on GitHub Actions, all `.ts` files outside `src` folder are deleted during this task if the environment variable `DELETE_TS_OUTSIDE_SRC` is defined. Don't set a value to this environment variable if you're not sure to retrieve your files. Basically, this value will only be defined in a GitHub Actions workflow and should not be necessary anywhere else._
-
-#### `prepare`
-
-Is an utility command which will patch TypeScript's behavior while resolving [aliases](https://www.typescriptlang.org/tsconfig/paths.html).
-
-#### `prepublishOnly`
-
-Is a [NPM "special" script](https://docs.npmjs.com/cli/v9/using-npm/scripts) triggered [before publishing the package on NPM](https://docs.npmjs.com/cli/v9/using-npm/scripts#npm-publish). It will build the application (`npm run build`).
 
 #### `test`
 
