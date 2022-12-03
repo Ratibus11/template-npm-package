@@ -6,17 +6,12 @@
         "node_modules": true,
         "package-lock.json": true,
 
-        "build": true,
-        "docs": true
+        "app": true,
+        "docs": true,
+        "tests/.localstorage": true
     },
-    "cSpell.words": [
-        "chaijs",
-        "choosealicense",
-        "github",
-        "Github",
-        "gulpfile",
-        "npmignore",
-        "ratibus",
-        "Ratibus"
-    ]
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 4,
+    "prettier.printWidth": 100,
+    "prettier.singleQuote": false
 }
